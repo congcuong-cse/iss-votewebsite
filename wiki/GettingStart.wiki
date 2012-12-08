@@ -1,7 +1,9 @@
 python 2.7.3 http://www.python.org/getit/
+
 django 1.4.2 https://www.djangoproject.com/download/
 Oracle 10 or 11
+
 python 2.7.3 - oracle : http://cx-oracle.sourceforge.net/
 
-Tutorial:
-django - oracle: https://docs.djangoproject.com/en/dev/ref/databases/#oracle-notes
+TUTORIAL:
+https://docs.djangoproject.com/en/dev/ref/databases/#oracle-notes
