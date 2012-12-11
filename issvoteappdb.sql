@@ -1,4 +1,5 @@
 --connect ISSVOTE/p123
+-------
 
 CREATE TABLE "QUAN" (
     "ID_QUAN" NVARCHAR2(10) PRIMARY KEY,
