@@ -98,11 +98,11 @@ class DanhSachUngVien(models.Model):
 
     class Meta:
         db_table = u'danh_sach_ung_vien'
-        verbose_name_plural =_(u"Tổ giám sát")
+        verbose_name_plural =_(u"Danh sách ứng viên")
         unique_together =('kybaucu','ung_vien')
         
     def __unicode__(self):
-        return self.ung_vien
+        return str(self.ung_vien)
     
 class DanhSachCuTri(models.Model):
     kybaucu = models.ForeignKey(KyBauCu,verbose_name=_(u'Kỳ bầu cử'))
@@ -115,7 +115,7 @@ class DanhSachCuTri(models.Model):
         unique_together =('kybaucu','nguoi_dan')
         
     def __unicode__(self):
-        return self.ung_vien
+        return '%st\%s' %(self.kybaucu,self.nguoi_dan)
     
     
     
