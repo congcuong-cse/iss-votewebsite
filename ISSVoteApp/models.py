@@ -22,7 +22,7 @@ class NguoiDan(models.Model):
     ten = models.CharField(_(u'Tên'), blank=False, max_length=50)
     ngay_sinh = models.DateField(_(u'Ngày sinh'), blank=False,)
     quoc_tich = CountryField(_(u'Quốc tịch'), blank=False, default='VN')
-    que_quan = models.CharField(_(u'Quê quán'), max_length=100)
+    que_quan = models.CharField(_(u'Quê quán'), max_length=100, default=_(u'Thành phố Hồ Chí Minh'))
     dia_chi_thuong_tru = models.CharField(_(u'Địa chỉ thường trú'), max_length=100, null=True, blank=True)
     dia_chi_tam_tru = models.CharField(_(u'Địa chỉ tạm trú'), max_length=100, null=True, blank=True)
     thu_an = models.BooleanField(_(u'Trong thời gian thụ án'), default=False)
@@ -107,7 +107,7 @@ class DanhSachUngVien(models.Model):
 class DanhSachCuTri(models.Model):
     kybaucu = models.ForeignKey(KyBauCu,verbose_name=_(u'Kỳ bầu cử'))
     nguoi_dan = models.ForeignKey(NguoiDan,verbose_name=_(u'Người dân'))
-    bau_cho = models.ForeignKey(DanhSachUngVien,verbose_name=_(u'Bầu cho'),null=True , blank=True)
+    da_bau = models.BooleanField(_(u'Đã bầu'), default=False)
     
     class Meta:
         db_table = u'danh_sach_cu_tri'
@@ -117,7 +117,14 @@ class DanhSachCuTri(models.Model):
     def __unicode__(self):
         return '%st\%s' %(self.kybaucu,self.nguoi_dan)
     
+class KetQuaBau(models.Model):
+    cu_tri = models.ForeignKey(DanhSachCuTri, verbose_name = _(u'Cử tri'))
+    bau_cho = models.ForeignKey(DanhSachUngVien, verbose_name=_(u'Bầu cho'), null=True, blank=True)
     
-    
-    
+    class Meta:
+        db_table = u'ket_qua_bau'
+        verbose_name_plural =_(u"Kết quả bầu")
+        
+    def __unicode__(self):
+        return '%s\t%s' %(self.cu_tri,self.bau_cho)
     
