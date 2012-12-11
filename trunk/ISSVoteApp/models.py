@@ -27,7 +27,7 @@ class NguoiDan(models.Model):
     dia_chi_tam_tru = models.CharField(_(u'Địa chỉ tạm trú'), max_length=100, null=True, blank=True)
     thu_an = models.BooleanField(_(u'Trong thời gian thụ án'), default=False)
     tam_than = models.BooleanField(_(u'Bệnh tâm thần'), default=False)
-    quan = models.OneToOneField(Quan, verbose_name=_('Quận'))
+    quan = models.ForeignKey(Quan, verbose_name=_(u'Quận'))
     
     class Meta:
         db_table = u'nguoi_dan'
@@ -64,14 +64,14 @@ class ToLapDanhSach(models.Model):
     def __unicode__(self):
         return '%s %s' % (self.ho_dem,self.ten)
         
-class ToTheoGioi(models.Model):
+class ToTheoDoi(models.Model):
     kybaucu = models.ForeignKey(KyBauCu,verbose_name=_(u'Kỳ bầu cử'))
     id_nguoitheodoi = models.CharField(_(u'Mã người theo dõi'),max_length=10, null=False, blank=False)
     ho_dem = models.CharField(_(u'Họ và tên đệm'),max_length=50)
     ten = models.CharField(_(u'Tên'),max_length=50)
     
     class Meta:
-        db_table = u'to_theo_gioi'
+        db_table = u'to_theo_doi'
         verbose_name_plural =_(u"Tổ theo dõi")
         unique_together =('kybaucu','id_nguoitheodoi')
     
