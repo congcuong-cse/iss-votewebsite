@@ -58,8 +58,8 @@ ALTER TRIGGER "ISSVOTE"."NGUOI_DAN_DROP_USER_TR" ENABLE;
 AFTER INSERT ON TO_GIAM_SAT
 FOR EACH ROW 
 BEGIN
-  create_user(:new.kybaucu_id || :new.id_nguoigiamsat);
-  grant_role('ISS_ROLE',:new.kybaucu_id || :new.id_nguoigiamsat);
+  create_user(:new.id_nguoigiamsat);
+  grant_role('ISS_ROLE',:new.id_nguoigiamsat);
 END;
 
 
@@ -71,7 +71,7 @@ ALTER TRIGGER "ISSVOTE"."TO_GIAM_SAT_CREATE_USER_TR" ENABLE;
 AFTER DELETE ON TO_GIAM_SAT
 FOR EACH ROW 
 BEGIN
-  drop_user(:old.kybaucu_id || :old.id_nguoigiamsat);
+  drop_user(:old.id_nguoigiamsat);
 END;
 
 
@@ -82,8 +82,8 @@ ALTER TRIGGER "ISSVOTE"."TO_GIAM_SAT_DROP_USER_TR" ENABLE;
 AFTER INSERT ON TO_LAP_DANH_SACH
 FOR EACH ROW 
 BEGIN
-  create_user(:new.kybaucu_id || :new.id_nguoilap);
-  grant_role('ISS_ROLE',:new.kybaucu_id || :new.id_nguoilap);
+  create_user(:new.id_nguoilap);
+  grant_role('ISS_ROLE',:new.id_nguoilap);
 END;
 
 
@@ -95,7 +95,7 @@ ALTER TRIGGER "ISSVOTE"."TO_LDS_CREATE_USER_TR" ENABLE;
 AFTER DELETE ON TO_LAP_DANH_SACH
 FOR EACH ROW 
 BEGIN
-  drop_user(:old.kybaucu_id || :old.id_nguoilap);
+  drop_user(:old.id_nguoilap);
 END;
 
 
@@ -106,8 +106,8 @@ ALTER TRIGGER "ISSVOTE"."TO_LAP_DANH_SACH_DROP_USER_TR" ENABLE;
 AFTER INSERT ON TO_THEO_DOI
 FOR EACH ROW 
 BEGIN
-  create_user(:new.kybaucu_id || :new.id_nguoitheodoi);
-  grant_role('ISS_ROLE',:new.kybaucu_id || :new.id_nguoitheodoi);
+  create_user(:new.id_nguoitheodoi);
+  grant_role('ISS_ROLE',:new.id_nguoitheodoi);
 END;
 
 
@@ -119,7 +119,7 @@ ALTER TRIGGER "ISSVOTE"."TO_THEO_DOI_CREATE_USER_TR" ENABLE;
 AFTER DELETE ON TO_THEO_DOI
 FOR EACH ROW 
 BEGIN
-  drop_user(:old.kybaucu_id || :old.id_nguoitheodoi);
+  drop_user(:old.id_nguoitheodoi);
 END;
 
 
