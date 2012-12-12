@@ -1,4 +1,5 @@
 # Django settings for ISSVote project.
+PROJECT_DIR = 'C:/DjangoSource/ISSVote'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -28,7 +29,7 @@ TIME_ZONE = 'America/Chicago'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'vi'
 
 SITE_ID = 1
 
@@ -56,11 +57,11 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = PROJECT_DIR + '/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+STATIC_URL = 'http://127.0.0.1:8000/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -87,12 +88,20 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+AUTHENTICATION_BACKENDS = (
+    #'django.contrib.auth.backend.ModelBackend',                     
+    'ISSVote.mybackend.OracleAuthBackend',
+)
+LOGIN_URL = '/accounts/login/'
+ORACLE_CONNECT = 'localhost/orcl'
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -106,6 +115,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    PROJECT_DIR+"/templates",
 )
 
 INSTALLED_APPS = (
